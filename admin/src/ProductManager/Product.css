@@ -1,0 +1,522 @@
+/* AddProduct.css */
+
+/* Overall container styling */
+.container {
+    background-color: #fff; /* White background */
+    color: #03045e; /* Black text */
+    padding: 20px;
+    max-width: 600px; /* Responsive max-width */
+    margin: 0 auto; /* Center content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    border-radius: 5px;
+  }
+  
+  /* Navigation links */
+  .navigation-links {
+    margin-bottom: 20px;
+    text-align: center; /* Center links */
+  }
+  
+  .navigation-links a {
+    color: #03045e;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  
+  .navigation-links a:hover {
+    color: #040685;
+  }
+  
+  /* Form container styling */
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  /* Input fields */
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select,
+  input[type="file"] {
+    background-color: #fff;
+    color: #03045e;
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    width: 100%;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #03045e; /* Black button background */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth background color transition and button scale */
+  }
+  
+  button:hover {
+    background-color: #00324d; /* Slightly darker gray on hover */
+    transform: scale(1.05); /* Slight button scale on hover */
+  }
+  
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+
+
+  .button {
+    background-color: #03045e;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth background color transition and button scale */
+  
+    /* Animation */
+    animation: buttonFadeIn 0.5s ease-in-out;
+  }
+  
+  .button:hover {
+    background-color: #040685;
+    transform: scale(1.05);
+  }
+  
+  /* Add a keyframe animation for the buttons */
+  @keyframes buttonFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* Navbar.css */
+
+/* Navigation bar styling */
+.navbar {
+  background-color: #040685; /* Dark background color */
+  color: #fff; /* White text color */
+  width: 100%; /* Set the width of the horizontal navbar to 100% */
+  height: 70px; /* Set the height of the navbar */
+  position: fixed; /* Fixed position at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Add a z-index to place it above other elements */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+  display: flex; /* Use flexbox to arrange elements in a horizontal line */
+  justify-content: space-between; /* Space elements evenly in the container */
+  align-items: center; /* Align elements vertically at the center */
+  padding: 0 20px; /* Add horizontal padding to the navbar */
+}
+
+/* Navigation links styling */
+.navbar a {
+  text-decoration: none; /* Remove underlines from links */
+  color: #fff; /* White text color */
+  display: block; /* Display links as blocks for full width */
+  padding: 15px 20px; /* Add padding for better clickability */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+.navbar a:hover {
+  background-color: #fff; /* White background on hover */
+  color: #040685; /* Dark text color on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* AddCategory.css */
+
+/* Overall container styling */
+.main-container {
+  background-color: #fff; /* White background */
+  color: #03045e; /* Black text */
+  padding: 20px;
+  max-width: 600px; /* Responsive max-width */
+  margin: 0 auto; /* Center content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  border-radius: 5px;
+  margin-top: 20px; /* Add spacing between containers */
+}
+
+/* Input field styling */
+input[type="text"] {
+  background-color: #fff;
+  color: #03045e;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+/* Error message styling */
+small {
+  color: #f00; /* Red for error messages */
+}
+
+/* Button styling */
+button {
+  background-color: #03045e; /* Black button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color transition and button scale */
+}
+
+button:hover {
+  background-color: #040685; /* Slightly darker gray on hover */
+  transform: scale(1.05); /* Slight button scale on hover */
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Add spacing between the form and the table */
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+/* Delete button styling */
+table button {
+  background-color: #f00; /* Red delete button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+table button:hover {
+  background-color: #d00; /* Slightly darker red on hover */
+}
+
+
+
+
+/* AddColor.css */
+
+/* Overall container styling */
+.container {
+  background-color: #fff; /* White background */
+  color: #03045e; /* Black text */
+  padding: 20px;
+  max-width: 600px; /* Responsive max-width */
+  margin: 0 auto; /* Center content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  border-radius: 5px;
+  margin-top: 20px; /* Add spacing between containers */
+}
+
+/* Input field styling */
+input[type="text"] {
+  background-color: #fff;
+  color: #03045e;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+/* Error message styling */
+small {
+  color: #f00; /* Red for error messages */
+}
+
+/* Button styling */
+button {
+  background-color: #03045e; /* Black button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color transition and button scale */
+}
+
+button:hover {
+  background-color: #040685; /* Slightly darker gray on hover */
+  transform: scale(1.05); /* Slight button scale on hover */
+}
+
+/* List item styling */
+p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+/* Delete button styling */
+button.delete-button {
+  background-color: #f00; /* Red delete button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+button.delete-button:hover {
+  background-color: #d00; /* Slightly darker red on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AddNewVariant.css */
+
+/* Overall container styling */
+.container {
+  background-color: #fff; /* White background */
+  color: #03045e; /* Black text */
+  padding: 20px;
+  max-width: 600px; /* Responsive max-width */
+  margin: 0 auto; /* Center content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  border-radius: 5px;
+  margin-top: 20px; /* Add spacing between containers */
+}
+
+/* Input field styling */
+input[type="text"],
+textarea,
+select,
+input[type="number"] {
+  background-color: #fff;
+  color: #03045e;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+/* Error message styling */
+small {
+  color: #f00; /* Red for error messages */
+}
+
+/* Button styling */
+button {
+  background-color: #03045e; /* Black button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color transition and button scale */
+}
+
+button:hover {
+  background-color: #040685; /* Slightly darker gray on hover */
+  transform: scale(1.05); /* Slight button scale on hover */
+}
+
+/* List item styling */
+p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+/* Delete button styling */
+button.delete-button {
+  background-color: #f00; /* Red delete button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+button.delete-button:hover {
+  background-color: #d00; /* Slightly darker red on hover */
+}
+
+/* Image styling */
+img {
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Image removal button styling */
+button.remove-button {
+  background-color: #f00; /* Red remove button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+button.remove-button:hover {
+  background-color: #d00; /* Slightly darker red on hover */
+}
+
+
+
+
+.custom-focus-border {
+  border-color: red !important;
+}
+
+
+
+/* Product.css */
+
+/* Container styling */
+.container {
+  background-color: #fff; /* White background */
+  color: #03045e; /* Black text */
+  padding: 20px;
+  max-width: 600px; /* Responsive max-width */
+  margin: 0 auto; /* Center content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  border-radius: 5px;
+}
+
+/* Input field styling */
+input[type="text"] {
+  background-color: #fff;
+  color: #03045e;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+
+/* Error message styling */
+small {
+  color: #f00; /* Red for error messages */
+}
+
+/* Button styling */
+.button {
+  background-color: #03045e; /* Black button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color transition and button scale */
+}
+
+.button:hover {
+  background-color: #040685; /* Slightly darker gray on hover */
+  transform: scale(1.05); /* Slight button scale on hover */
+}
+
+/* List item styling */
+p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+/* Delete button styling */
+.button.delete-button {
+  background-color: #f00; /* Red delete button background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.button.delete-button:hover {
+  background-color: #d00; /* Slightly darker red on hover */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+  /* Adjust container width for smaller screens */
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+}
+
+.message-box {
+  background-color: #606460; /* Green background color for success */
+  color: #fff; /* White text color */
+  padding: 10px;
+  border-radius: 4px;
+  margin: 0 auto; /* Center horizontally */
+  max-width: 400px;
+  text-align: center;
+  position: fixed;
+  top: 0; /* Position at the top of the page */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  z-index: 999; /* Adjust z-index to make sure it's above other elements */
+}
+
+.success-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px; /* Add some spacing between the icon and the message */
+}
+

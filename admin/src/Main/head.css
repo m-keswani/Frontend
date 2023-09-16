@@ -1,0 +1,58 @@
+.navbar-mean{
+    padding-left: 20px;
+}
+#head1
+{
+    background-color:  #145970 ;
+}
+
+#head2
+{
+    background-color:  #0e4254 ;
+}
+.main{
+    background-color: black;
+}
+
+/* head.css or your custom CSS file */
+.nav-drawer {
+    width: 300px; /* Adjust the width as needed */
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 10%;
+    background-color: white; /* Set your desired background color */
+    z-index: 1000; /* Set a higher z-index value to ensure it appears above other content */
+    /* Add other styles as needed */
+  }
+  .input-container {
+    position: relative;
+    margin: 20px;
+  }
+  
+  .input-label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .input-container.focused .input-label {
+    top: -20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .label-up {
+    top: -10px;
+    font-size: 12px;
+  }
+  

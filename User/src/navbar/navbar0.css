@@ -1,0 +1,109 @@
+/* navbar0.css */
+
+/* Reset some default styles */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: #272727;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    max-width: 80px;
+  }
+  
+  .nav-links {
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  /* Search box styles */
+  .search-box {
+    display: flex;
+    align-items: center;
+    transition: max-width 0.3s ease, opacity 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  
+  .search-box.open {
+    max-width: 200px; /* Adjust the width as needed */
+    opacity: 1;
+  }
+  
+  .search-box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    transition: width 0.3s ease;
+  }
+  
+  /* Search icon styles */
+  .menu-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  ion-icon[name="search-outline"] {
+    font-size: 24px; /* Adjust the size as needed */
+    margin-right: 10px; /* Add spacing between input and icon */
+    color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Rotate the search icon when the search box is open */
+  .menu-button.open ion-icon[name="search-outline"] {
+    transform: rotate(45deg);
+  }
+  
+ .cart{
+    padding-left:  15px;
+    padding-right: 20px; 
+    color: #fff
+ }
+
+ @media (max-width: 800px){
+    .nav-links{
+        display: none;
+    }
+ 
+}
+ 
+.person{
+    padding-right: 20px; 
+    color: #fff
+}
