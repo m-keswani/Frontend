@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useRef   } from 'react'
 import "./Product.css";
 import MessageBox from './MessageBox';
+import { IoMdClose } from 'react-icons/io';
 const AddNewVariant = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const value = urlParams.get('value');
@@ -189,6 +190,9 @@ const AddNewVariant = () => {
         await variantMasterData()
         await imageMaster()
         setShowMessage(true);
+        setTimeout(() => {
+            setShowMessage(false);
+        }, 3000);
     }
 
     //Validation 
@@ -303,8 +307,11 @@ return (
             {selectedImage.map((val, index) => (
                 <>
 
-                    <img src={URL.createObjectURL(val)} alt="" style={{ width: '200px', height: '200px' }} />
-                    <button className='button' onClick={() => delImg(val)}>Remove</button>
+                    <div key={index} className="image-container">
+                        <img src={URL.createObjectURL(val)} alt="" className="image" />
+                      
+                            <IoMdClose className="remove-button" onClick={() => delImg(val)} />
+                    </div>
                 </>
             ))}
 
@@ -312,7 +319,7 @@ return (
 
             <button className='button' onClick={addNewVariant}>Add</button>
 
-            {showMessage && <MessageBox message="New Variant Added Successfully" visibility='false' />}
+            {showMessage && <MessageBox message="New Variant Added Successfully" visibility='true' />}
     </div>
   )
 }

@@ -1,0 +1,75 @@
+/* CSS for MessageBox */
+.message-box {
+    background-color: #145970;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 16px;
+    border-radius: 5px;
+  }
+  
+  /* CSS for Select, Input, and Button */
+  select,
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #145970;
+    border-radius: 5px;
+    margin-bottom: 16px;
+  }
+  
+  .text-danger {
+    font-size: 9px;
+    color: red;
+    margin-bottom: 8px;
+  }
+  
+  button {
+    background-color: #145970;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  /* CSS for Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+  
+  table th,
+  table td {
+    padding: 8px;
+    border: 1px solid #145970;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #145970;
+    color: white;
+  }
+  
+  /* CSS for Responsive Layout */
+  @media (max-width: 768px) {
+    select,
+    input[type="text"] {
+      padding: 6px;
+    }
+  
+    .text-danger {
+      font-size: 9px;
+    }
+  
+    button {
+      padding: 6px 12px;
+    }
+  }
+  .non-selectable {
+    user-select: none;
+  }
+
+
+  

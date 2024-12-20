@@ -1,0 +1,22 @@
+/* SuccessPage.css */
+.success-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .success-container {
+    text-align: center;
+  }
+  
+  .order-details {
+    margin-top: 20px;
+    border: 1px solid #fff;
+    padding: 10px;
+  }
+  
+  /* Add more styles as needed */
+  

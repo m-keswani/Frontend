@@ -1,0 +1,82 @@
+
+  /* Quantity button styles */
+  .quantity-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #ddd;
+  }
+  
+  /* Quantity text styles */
+  .quantity-text {
+    margin: 0 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* Close button styles */
+  .close {
+    font-size: 1.5rem;
+    color: #f00;
+    cursor: pointer;
+  }
+  
+  /* Back to shop styles */
+  .back-to-shop {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+  }
+  
+  .back-to-shop:hover {
+    text-decoration: underline;
+  }
+  
+  /* Summary styles */
+  .summary {
+    background-color: #ffffff;
+    padding: 20px;
+   
+  }
+  
+  .summary h5 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Shipping styles */
+  .summary p {
+    font-weight: bold;
+    margin-top: 0;
+  }
+  
+  /* Total price styles */
+  .row.text-right {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /* Checkout button styles */
+  .btn-checkout {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .btn-checkout:hover {
+    background-color: #000000;
+  }
+  

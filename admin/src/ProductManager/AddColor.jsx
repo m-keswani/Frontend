@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./Product.css";
-
-
+import MessageBox from './MessageBox';
+import { AiFillDelete } from 'react-icons/ai';
+import { GrAdd } from 'react-icons/gr';
 
 const AddColor = () => {
 
@@ -9,7 +10,9 @@ const AddColor = () => {
     const colorForm = new FormData()
     const [fetchedColor, setFetchedColor] = useState([])
     const [colorError,setColorError] = useState('')
-    const [colorDuplicate,setColorDuplicate] = useState('')
+    const [showMessage,setShowMessage] = useState('')
+    const [showDeleteMessage,setShowDeleteMessage] = useState('')
+
 
     useEffect(() => {
         fetchColor()
@@ -30,15 +33,21 @@ const AddColor = () => {
         const isDuplicate = fetchedColor.some((item) => item.colorName === color);
     
         if (isDuplicate) {
-            setColorDuplicate("already added")
             return; // Do not add the duplicate color
         }
         try {
-            await fetch("http://localhost:8000/adminsite/colormaster",
+            const response = await fetch("http://localhost:8000/adminsite/colormaster",
                 {
                     method: 'POST',
                     body: colorForm,
                 })
+                if(response.ok)
+                {
+                    setShowMessage(true)
+                    setTimeout(() => {
+                        setShowMessage(false);
+                      }, 2000);
+                }
                 fetchColor()
                 setColor('')        
         }
@@ -67,8 +76,14 @@ const AddColor = () => {
     const delColor =async(val)=>{
         try{
             
-            await fetch("http://localhost:8000/adminsite/colormaster/"+val.toString(),{method:"DELETE"});
-            
+            const reponse = await fetch("http://localhost:8000/adminsite/colormaster/"+val.toString(),{method:"DELETE"});
+            if(reponse.ok)
+            {
+                setShowDeleteMessage(true)
+                setTimeout(() => {
+                    setShowDeleteMessage(false);
+                  }, 2000);
+            }
           }
           catch(error){
             alert("Failed to delete")
@@ -80,22 +95,47 @@ const AddColor = () => {
 
     return (
         <div className='container'>
+            
+            {showMessage && <MessageBox message="Color Added Successfully" visibility='true' />}
+            {showDeleteMessage && <MessageBox message="Color removed Successfully" visibility='true' />}
 
-            <label>Color Name :</label>
+            <label>Color Name </label>
             <input type="text" name='color' maxLength={10} value={color} onChange={(e) => setColor(e.target.value.replace(/[^A-Za-z' ']/g, ''))} /><br />
 
-            <p className='text-danger 9px'>{colorDuplicate && <div className="error-message">{colorDuplicate}</div>}</p>
             <p className='text-danger 9px'>{colorError && <div className="error-message">{colorError}</div>}</p>
 
+            {fetchedColor.some((dict) => Object.values(dict).includes(color.toLowerCase()))?(<p>already added</p>):null}
 
-            <button className='button'onClick={addColor}>Add Color</button>
+            <button className='button' onClick={addColor}><GrAdd/> Add Color</button>
+            <br/>
+            <br/>
+            <table>
+                <tr>
+                    <th>
+                        Color Name
+                    </th>
+                    <th>
 
-            {fetchedColor.map((item) => (
-          <div key={item.id} className="color-item">
-          <p>{item.colorName}</p>
-          <button className="delete-button" onClick={() => delColor(item.id)}>Remove</button>
-        </div>
-            ))}
+                    </th>
+                </tr>
+              
+                    {fetchedColor.map((item) => (
+                        <tr>
+                            <td className='text-center'>
+                                {item.colorName}
+                            </td>
+
+                            <td>
+                                <button className="button float-right" onClick={() => delColor(item.id)}>Delete <AiFillDelete/></button>
+                            </td>
+                        </tr>   
+                    ))}
+                
+            </table>
+
+
+
+            
         </div>
     )
 }

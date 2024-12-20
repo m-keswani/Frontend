@@ -1,5 +1,76 @@
 /* AddProduct.css */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Overall container styling */
 .container {
     background-color: #fff; /* White background */
@@ -500,15 +571,16 @@ p {
 }
 
 .message-box {
-  background-color: #606460; /* Green background color for success */
+  background-color: #3c4442; /* Green background color for success */
   color: #fff; /* White text color */
   padding: 10px;
+  font-weight: 450;
   border-radius: 4px;
   margin: 0 auto; /* Center horizontally */
   max-width: 400px;
   text-align: center;
   position: fixed;
-  top: 0; /* Position at the top of the page */
+  top: 2px; /* Position at the top of the page */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   z-index: 999; /* Adjust z-index to make sure it's above other elements */
@@ -520,3 +592,49 @@ p {
   margin-right: 10px; /* Add some spacing between the icon and the message */
 }
 
+
+
+.non-selectable {
+  user-select: none;
+}
+
+.container{
+  box-shadow: #110f0f;
+}
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px; /* Add margin between images */
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+}
+.remove-button {
+  position: absolute;
+  top: 0px; /* Adjust top position as needed */
+  right: 5px; /* Adjust right position as needed */
+  background-color: #0b0101; /* Button background color */
+  color: #ffffff; /* Button text color */
+  border: none;
+  border-radius: 29%;
+  padding: 8px; /* Adjust padding to change button size */
+  cursor: pointer;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  width: 30px; /* Set the desired width */
+  height: 30px; /* Set the desired height */
+  font-size: 16px; /* Adjust font size of the icon */
+}
+
+/* Add a hover effect for the Remove button */
+.remove-button:hover {
+  background-color: #fffcfc; /* Hover background color */
+  color: #040000; /* Button text color */
+
+}

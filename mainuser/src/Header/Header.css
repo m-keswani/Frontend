@@ -1,0 +1,178 @@
+.head{
+    background-color: rgb(182, 186, 186);
+}
+
+
+
+
+/* navbar0.css */
+
+/* Reset some default styles */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+/* CSS */
+.anchor-button {
+  background: none;
+  border: none;
+  color: blue; /* Change the default text color to blue */
+  text-decoration: underline; /* Add underline by default */
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+.anchor-button:hover {
+  color: white; /* Change text color to white on hover */
+  text-decoration: underline; /* Keep the underline on hover */
+}
+
+
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  
+  .logo {
+    max-width: 80px;
+  }
+  
+  .nav-links {
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: rgb(160, 160, 160);
+    transition: color 0.3s ease;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+
+  
+  /* Search box styles */
+  .search-box {
+    display: flex;
+    align-items: center;
+    transition: max-width 0.3s ease, opacity 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  
+  .search-box.open {
+    max-width: 200px; /* Adjust the width as needed */
+    opacity: 1;
+  }
+  
+  .search-box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    transition: width 0.3s ease;
+  }
+  
+  /* Search icon styles */
+  .menu-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  ion-icon[name="search-outline"] {
+    font-size: 24px; /* Adjust the size as needed */
+    margin-right: 10px; /* Add spacing between input and icon */
+    color: #fff;
+    transition: transform 0.3s ease;
+  }
+  .imgg1{
+    display: none;
+  }
+  
+
+ @media (max-width: 765px){
+    .nav-links{
+        display: none;
+    }
+    .imgg1{
+      display: block;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add CSS styles for the search popup */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-icon {
+  margin-right: 10px;
+  transition: transform 0.3s; /* Add a transition for the icon */
+}
+
+.search-popup {
+  position: absolute;
+  top: 100%; /* Position the popup below the search icon */
+  right: 0;
+  width: 250px; /* Adjust the width as needed */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  display: none;
+  transition: opacity 0.3s, transform 0.3s; /* Add transitions for the popup */
+}
+
+.search-box.open .search-popup {
+  display: block;
+  opacity: 1;
+  transform: translateY(10px); /* Slide the popup down with a slight offset */
+}
+
+.search-box.open .search-icon {
+  transform: rotate(45deg); /* Rotate the icon to an 'X' when open */
+}
+
+/* Add additional styling to the input field as needed */
+.search-popup input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+/* Rest of your existing CSS styles */
+
+ 

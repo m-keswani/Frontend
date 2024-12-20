@@ -1,0 +1,48 @@
+
+  
+  .mean-con {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .label {
+    color: #145970;
+    font-weight: bold;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .button {
+    background-color: #145970;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .size-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .small-text {
+    font-size: 9px;
+    margin-bottom: 5px;
+  }
+  
+  .text-info {
+    color: #145970;
+  }
+  

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import "./Product.css";
-
+import MessageBox from './MessageBox';
+import { AiFillDelete } from 'react-icons/ai';
+import { GrAdd } from 'react-icons/gr';
 const AddCategory = () => {
 
   const [categoryData, setCategoryData] = useState('')
   const [category, setCategory] = useState('')
   const categoryArray = []
+  const [showMessage, setShowMessage] = useState(false);
+  const [showDeleteMessage, setShowDeleteMessage] = useState(false);
   
   const formData = new FormData()
   const [categoryError,setCategoryError] = useState('')
@@ -31,6 +35,7 @@ const AddCategory = () => {
     if (category.trim() === '') {
       setCategoryError("empty category not allowed")
       isValid = false
+      return
     }
     else{
       setCategoryError('')
@@ -50,7 +55,12 @@ const AddCategory = () => {
             method: 'POST',
             body: formData,
           })
-       
+          setShowMessage(true);
+          setCategory('')
+
+          setTimeout(() => {
+              setShowMessage(false);
+          }, 3000);
 
       }
       catch (error) {
@@ -67,10 +77,13 @@ const AddCategory = () => {
       
       try{
         await fetch("http://localhost:8000/adminsite/categorymaster/"+key.toString()+'/',{method:"DELETE"});
-        
+        setShowDeleteMessage(true);
+        setTimeout(() => {
+            setShowDeleteMessage(false);
+        }, 3000);
       }
       catch(error){
-        console.log("Delete unsuccessful")
+        alert("Delete unsuccessful")
       }
       fetchData()
   }
@@ -83,36 +96,47 @@ const AddCategory = () => {
   }
   return (
     <>
+      {showMessage && <MessageBox message="Category Added Successfully" visibility='true' />}
+      {showDeleteMessage && <MessageBox message="Category Removed Successfully" visibility='true' />}
       
-      <div className='container main-container'>
-        <label>Enter Category Name ::</label>
-        <input type="text" name='category' maxLength="20" value={category} onChange={(e) => setCategory(e.target.value.replace(/[^A-Za-z]/g, ''))} />
-        
-        <p className='text-danger 9px'>{categoryError && <div className="error-message">{categoryError}</div>}</p>
-        <p className='text-danger 9px'>{categoryDuplicate && <div className="error-message">{categoryDuplicate}</div>}</p>
+      <div className='container main-container '>
 
-        <button type='submit' onClick={addCategory} >Add Category</button>
+        <label htmlFor="" className='text-bold'>Category:</label>
+        <input
+          type='text'
+          name='category'
+          maxLength='20'
+          value={category}
+          onChange={(e) => setCategory(e.target.value.replace(/[^A-Za-z]/g, ''))}
+          className='input-field'
+        />
+        <br />
+        {categoryError && <div className="error-message"><p className='text-danger'>{categoryError}</p></div>}
+        {categoryArray.some(row => row.includes(category.toLowerCase())) ? <p className='text-info'>Category already added</p> : null}
+        <button type='submit' onClick={addCategory} className='button' ><GrAdd className=''/> Add Category</button>
 
       </div>
-      <div className='container main-container'>
-        <table border='1'>
-          <tr>
-            <th>
-              Available Category
-            </th>
-            <th>
-
-            </th>
-          </tr>
-          {categoryArray.map((val) => (
-            <tr key={val[0]}>
-              <td>{val[1]}</td>
-              <td><button className='button' onClick={() => deleteCategory(val[0])}>Delete</button></td>
-
+      <br />
+      <br />
+      <div className='container main-container non-selectable'>
+        <table className='table '>
+          <thead>
+            <tr>
+              <th>Available Category</th>
+              <th></th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {categoryArray.map((val) => (
+              <tr key={val[0]}>
+                <td className='h5 text-center pt-4'>{val[1]}</td>
+                <td><button className='button float-right' onClick={() => deleteCategory(val[0])}>Delete <AiFillDelete /></button></td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
+
     </>
   )
 

@@ -3,13 +3,21 @@ import Product from './Product.css'
 
 
 function MessageBox(props) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState('');
+
   useEffect(() => {
+    if(props.visibility === 'true')
+    {
+      ShowMessage()
+    }
+  }, [isVisible]);
+
+  const ShowMessage =()=>{
     setIsVisible(props.visibility)
-    if (!isVisible) {
+    if (isVisible) {
       const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 2000); // 10 seconds
+        setIsVisible(false);
+      }, 2000); 
 
       return () => {
         clearTimeout(timer);
@@ -17,12 +25,12 @@ function MessageBox(props) {
     }
     else{
     }
-  }, [isVisible]);
+  }
 
   return isVisible ? (
     <div className="message-box">
     <span className="success-icon">✅</span> {props.message}
-  </div>
+    </div>
   ) : null;
 }
 

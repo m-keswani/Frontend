@@ -1,0 +1,48 @@
+.message-box {
+    background-color: #131716; /* Green background color for success */
+    color: #fff; /* White text color */
+    padding: 10px;
+    font-weight: 450;
+    border-radius: 4px;
+    margin: 0 auto; /* Center horizontally */
+    max-width: 400px;
+    width: 900px;
+    text-align: center;
+    position: fixed;
+    top: 2px; /* Position at the top of the page */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 999; /* Adjust z-index to make sure it's above other elements */
+  }
+
+
+  /*Spinner */
+  .spinner {
+    border: 4px solid #d6d3d3; 
+    border-top: 4px solid transparent; /* Transparent border for the spinner effect */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite; /* Slightly faster animation */
+  
+    /* Add a pseudo-element to make it a dual-tone spinner */
+    position: relative;
+  }
+  
+  .spinner::before {
+    content: '';
+    border-top: 4px solid transparent; /* Transparent border for the spinner effect */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -4px; /* Slightly overlap the original spinner */
+    left: -4px;
+    animation: spin 1s linear infinite; /* A bit slower animation for the second color */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

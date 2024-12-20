@@ -4,7 +4,7 @@ import Head from '../Main/Head';
 const Layout = ({ children }) => {
   return (
     <div>
-      
+      <Head/>
       <div className="content">{children}</div>
     </div>
   );

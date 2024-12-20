@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Product.css";
+import Product from "./Product.css";
+import MessageBox from './MessageBox';
+import { AiFillDelete } from 'react-icons/ai';
+import { FiEdit2 } from 'react-icons/fi';
+import { RxUpdate } from 'react-icons/rx';
 
 const ExpandProduct = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -15,6 +19,8 @@ const ExpandProduct = () => {
   const [newPrice,setNewPrice] = useState('')
   const navigate = useNavigate()
   const [editingVariantIndex, setEditingVariantIndex] = useState(-1);
+  const [showMessage,setShowMessage] = useState('')
+  const [showDeleteMessage,setShowDeleteMessage] = useState('')
   const data = new FormData()
 
   useEffect(() => {
@@ -90,9 +96,15 @@ const ExpandProduct = () => {
   const remove =async(vid)=>{
 
     try{
-      const reponse  = await fetch('http://localhost:8000/adminsite/productvariantmaster/' + vid.toString(),{method:'DELETE'})
-      console.log("Response ",reponse)
+      const response  = await fetch('http://localhost:8000/adminsite/productvariantmaster/' + vid.toString(),{method:'DELETE'})
+      if(response.ok){
       fetchProductVariant()
+
+        setShowDeleteMessage(true)
+        setTimeout(() => {
+          setShowDeleteMessage(false);
+      }, 3000);
+      }
     }
     catch(error)
     {
@@ -122,6 +134,10 @@ const ExpandProduct = () => {
         setIsEditablePrice(false)
         setIsEditableQty(false)
         setEditingVariantIndex(-1)
+        setShowMessage(true)
+        setTimeout(() => {
+          setShowMessage(false);
+      }, 3000);
       }
 
     }
@@ -132,31 +148,47 @@ const ExpandProduct = () => {
     
   }
 
+    const [selectedImage, setSelectedImage] = useState(null);
+  
+    const openImage = (imageUrl) => {
+      setSelectedImage(imageUrl);
+      document.body.style.overflow = 'hidden'; // Disable scrolling when the image is open
+    };
+  
+    const closeImage = () => {
+      setSelectedImage(null);
+      document.body.style.overflow = 'auto'; // Enable scrolling when the image is closed
+    };
+    
   return (
     <div>
+
+      {showMessage && <MessageBox message="Updated Successfully" visibility='true' />}
+      {showDeleteMessage && <MessageBox message="Deleted Successfully" visibility='true' />}
+
       <div className='container mb-5 mt-3'>
-        <button onClick={() => addNewVariant() }>
+        <button className='button' onClick={() => addNewVariant() }>
           Add New Variant
         </button>
       </div>
       {variantData.map((val, key) => (
-        
-        <div key={key} className='container main-container'>
+        <>
+        <div key={key} className='container '>
              
           <div>
-          <button className='float-right' onClick={() => remove(val.id) }>Remove</button>
+          <button className='float-right button' onClick={() => remove(val.id) }><AiFillDelete/> Delete</button>
           </div>
           <div>
-          {editingVariantIndex === key ? '' : (<button className='float-right' onClick={() => update(key,val.id) }>Update</button>)}
+          {editingVariantIndex === key ? '' : (<button className='float-right button' onClick={() => update(key,val.id) }><FiEdit2/> Edit</button>)}
           
           </div>
-          <p>Variant Id :: {val.id}</p>
-          <p>Product Id :: {val.productId}</p>
-          <p>Size :: {variantSize[key]?.[0]?.size}</p>
-          <p>Color :: {variantColor[key]?.[0]?.colorName}</p>
-          Quantity :: <input type="number" name='qty' min={1} value={key === editingVariantIndex ? newQty : val.qty} onChange={(e) => { setNewQty(e.target.value) }} readOnly={key !== editingVariantIndex}/><br />
-          Price ::<input
-            type="text"
+          <p>Variant Id: {val.id}</p>
+          <p>Product Id: {val.productId}</p>
+          <p>Size: {variantSize[key]?.[0]?.size}</p>
+          <p>Color: {variantColor[key]?.[0]?.colorName}</p>
+          Quantity: <input type="number" name='qty' min={1} value={key === editingVariantIndex ? newQty : val.qty} onChange={(e) => { setNewQty(e.target.value) }} readOnly={key !== editingVariantIndex}/><br />
+          Price: <input
+            type="number"
             name='price'
             value={key === editingVariantIndex ? newPrice : val.price}
             onChange={(e) => {
@@ -167,12 +199,14 @@ const ExpandProduct = () => {
             readOnly={key !== editingVariantIndex}
           />
           <br />
+          <br />
+          
           <div>
             {variantImages[key] && (
               <div>
                 {variantImages[key].map((image, imageKey) => (
-                  <img
-                    style={{ width: '100px', height: '100px' }}
+                  <img className=" rounded border" 
+                    style={{ width: '200px', height: '200px' }}
                     key={imageKey}
                     src={image.imageUrl}
                     alt={`Image ${imageKey}`}
@@ -181,10 +215,12 @@ const ExpandProduct = () => {
               </div>
             )}
           </div>
-          {editingVariantIndex === key ? <button onClick={() => updateData(val.id,val.productId,variantSize[key]?.[0]?.size,variantColor[key]?.[0]?.colorName) }>Update</button> : ''}
+          {editingVariantIndex === key ? <button className='button' onClick={() => updateData(val.id,val.productId,variantSize[key]?.[0]?.size,variantColor[key]?.[0]?.colorName) }><RxUpdate/> Update</button> : ''}
         </div>
-        
+        <br/>
+        </>
       ))}
+      
     </div>
   );
 }

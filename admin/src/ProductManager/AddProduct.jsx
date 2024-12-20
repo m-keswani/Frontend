@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import "./Product.css";
+import MessageBox from './MessageBox';
+import { MdOutlineSaveAlt } from 'react-icons/md';
+import { VscNewFile } from 'react-icons/vsc';
+import { IoMdClose } from 'react-icons/io';
+
+
 
 const AddProduct = () => {
 
@@ -56,6 +62,8 @@ const AddProduct = () => {
     const qtyRef = useRef(null);
     const priceRef = useRef(null);
     const imageRef = useRef(null);
+
+    const [showMessage,setShowMessage] =useState('')
 
     useEffect(() => {
         fetchCategoryData()
@@ -148,8 +156,8 @@ const AddProduct = () => {
     const imageMaster =async()=>{
         const response = await fetch("http://localhost:8000/adminsite/productvariantmaster")
         const r = await response.json()
-        //setProductId(r.id)
-        console.log("Get Response variant id",r.id)
+
+        
         setVariantId(r.id)
         selectedImage.map((val) =>{
             const sendData = async()=>{
@@ -164,10 +172,17 @@ const AddProduct = () => {
                         method: 'POST',
                         body: imageToUpload,
                     })
+                    if(response.ok)
+                    {
+                        setShowMessage(true)
+                        setTimeout(() => {
+                            setShowMessage(false);
+                          }, 2000);
+                    }
                     
             }
             catch (error) {
-                console.log("Error ", error)
+                alert("Error to add")
             }
 
         }
@@ -210,6 +225,9 @@ const AddProduct = () => {
         if (file && file.type.startsWith('image/')) {
         setSelectedImage(current => [...current, event.target.files[0]]);
         }
+        console.log('Selected Images :',selectedImage)
+
+
     };
 
     const delImg = (img) => {
@@ -367,8 +385,10 @@ const AddProduct = () => {
       
 
     return (
-        <div className="container">
+        <div className="container non-selectable">
             
+            {showMessage && <MessageBox message="Added Successfully" visibility='true' />}
+
             <br />
             <div className=''>
             <label>Product Name </label>
@@ -458,18 +478,19 @@ const AddProduct = () => {
             <label>Image </label>
             <input class="form-control" type="file" accept="image/*" onChange={handleImageChange}  />
 
-            {selectedImage.map((val, index) => (
-                <>
+                {selectedImage.map((val, index) => (
+                    <div key={index} className="image-container">
+                        <img src={URL.createObjectURL(val)} alt="" className="image" />
+                      
+                            <IoMdClose className="remove-button" onClick={() => delImg(val)} />
+                    </div>
+                ))}
 
-                    <img src={URL.createObjectURL(val)} alt="" style={{ width: '200px', height: '200px' }} />
-                    <button onClick={() => delImg(val)}>Remove</button>
-                </>
-            ))}
 
             <p className='text-danger 9px'>{imageError && <div className="error-message">{imageError}</div>}</p>
 
-            <button className='button' onClick={submitNewVariant} > Save and new Variant</button>
-            <button className='button' onClick={() => { submitProductDetails(); setEdit(false);  }}>Save</button>
+            <button className='button' onClick={submitNewVariant} ><VscNewFile/> Save and add other variant</button>
+            <button className='button' onClick={() => { submitProductDetails(); setEdit(false);  }}><MdOutlineSaveAlt/> Save</button>
 
             </div>
 

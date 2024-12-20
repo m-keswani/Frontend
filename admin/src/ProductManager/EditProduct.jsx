@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Product.css";
+import "./Productedit.css";
+import ConfirmationBox from './ConfirmationBox';
+
+import './EditProductCss.css'
 
 const EditProduct = () => {
   const [fetchedProductData, setFetchedProductData] = useState([]);
@@ -8,16 +11,16 @@ const EditProduct = () => {
   const [fetchedCategory, setFetchedCategory] = useState([]);
   const [fetchedSubCategory, setFetchedSubCategory] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const [filteredData,setFilteredData] = useState([])
-  const [dupFetchedProducts,setDupFetchedProducts] = useState('')
+  const [filteredData, setFilteredData] = useState([])
+  const [dupFetchedProducts, setDupFetchedProducts] = useState('')
+  const [showMessage, setShowMessage] = useState('')
 
   useEffect(() => {
     fetchProduct();
     getCategory();
     getSubCategory();
-  }, []);  
+  }, []);
 
   const fetchProduct = async () => {
     try {
@@ -65,7 +68,7 @@ const EditProduct = () => {
 
   const toggleAllCheckboxes = () => {
     if (selectedItems.length === fetchedProductData.length) {
-     
+
       setSelectedItems([]);
     } else {
       setSelectedItems(fetchedProductData.map((val) => val.id));
@@ -74,90 +77,114 @@ const EditProduct = () => {
 
   const toggleCheckbox = (itemId) => {
     if (selectedItems.includes(itemId)) {
-     
+
       setSelectedItems(selectedItems.filter((id) => id !== itemId));
     } else {
-      
+
       setSelectedItems([...selectedItems, itemId]);
     }
   }
 
-  const handleRemove = async() => {
-    
-    setShowDeleteDialog(false);
-    selectedItems.map(async (val)=>{
-    await fetch('http://localhost:8000/adminsite/productdelete/' + val.toString(),{method:"DELETE"})
-    fetchProduct()
+  const handleRemove = async () => {
+    setShowMessage(false)
+    selectedItems.map(async (val) => {
+      await fetch('http://localhost:8000/adminsite/productdelete/' + val.toString(), { method: "DELETE" })
+      fetchProduct()
     })
-    
+
   }
   const filteredProducts = fetchedProductData.filter((product) =>
-  product.name.toLowerCase().includes(searchInput.toLowerCase()),console.log(searchInput)
-  
+    product.name.toLowerCase().includes(searchInput.toLowerCase()), console.log(searchInput)
+
   );
 
-  console.log("FilteredData",filteredData)
-  
+  console.log("FilteredData", filteredData)
+
   return (
-    <div>
-      
+    <div className="product-table-container">
+      {showMessage && (
+        <ConfirmationBox
+          message="🤔 Are you sure you want to delete the selected items?"
+          visibility="true"
+          onConfirm={handleRemove}
+          onCancel={() => setShowMessage(false)}
+        />
+      )}
+
       <div className="button-bar">
-        {selectedItems.length > 0 ?<button onClick={() => setShowDeleteDialog(true) }>Remove</button>:''}
+        {selectedItems.length > 0 ? (
+          <button className="hover-effect button" onClick={() => setShowMessage(true)}>
+            Remove
+          </button>
+        ) : ''}
       </div>
-      
-      <div className="search-bar">
+
+      <div className="search-bar container">
         <input
           type="text"
           placeholder="Search products"
-          
-          onChange={(e) => {setSearchInput(e.target.value);setFetchedProductData(e.target.value !== '' ? filteredProducts: dupFetchedProducts)}}
+          onChange={(e) => {
+            setSearchInput(e.target.value);
+            setFetchedProductData(
+              e.target.value !== '' ? filteredProducts : dupFetchedProducts
+            );
+          }}
         />
       </div>
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>
-              <input type="checkbox" onChange={toggleAllCheckboxes} checked={selectedItems.length === fetchedProductData.length} />
-            </th>
-            <th>Product Id</th>
-            <th>Product Name</th>
-            <th>Product Description</th>
-            <th>Gender</th>
-            <th>Category Name</th>
-            <th>Sub Category Name</th>
-            <th>Added On (In UTC)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {fetchedProductData.map((val, key) => (
-            <tr key={key} onClick={() => expand(val.id)} className={selectedItems.includes(val.id) ? 'selected-row' : ''}>
-              <td>
+
+      <div className="table-container">
+        <table className="table table-bordered non-selectable table table-hover">
+          <thead className=''>
+            <tr>
+              <th>
                 <input
                   type="checkbox"
-                  onChange={() => toggleCheckbox(val.id)}
-                  checked={selectedItems.includes(val.id)}
-                  onClick={(e) => e.stopPropagation()} // Prevent row click event propagation when clicking the checkbox
+                  onChange={toggleAllCheckboxes}
+                  checked={selectedItems.length === fetchedProductData.length}
                 />
-              </td>
-              <td>{val.id}</td>
-              <td>{val.name}</td>
-              <td>{val.description}</td>
-              <td>{val.gender}</td>
-              <td>{getCategoryName(val.categoryId)}</td>
-              <td>{getSubCategoryName(val.subCategoryId)}</td>
-              <td>{val.created_at}</td>
+              </th>
+              <th>Product Id</th>
+              <th>Product Name</th>
+              <th>Product Description</th>
+              <th>Gender</th>
+              <th>Category Name</th>
+              <th>Sub Category Name</th>
+              <th>Added On (In UTC)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {showDeleteDialog && (
-        <div className="delete-dialog">
-          <p>Are you sure you want to delete the selected items?</p>
-          <button onClick={handleRemove}>Yes</button>
-          <button onClick={() => setShowDeleteDialog(false)}>No</button>
-        </div>
-      )}
+          </thead>
+          <tbody className=''>
+            {fetchedProductData.map((val, key) => (
+              <tr
+                key={key}
+                onClick={() => expand(val.id)}
+
+                className={`${selectedItems.includes(val.id) ? 'selected-row' : ''
+                  } hover-effect-row`}
+              >
+                <td style={{pointerEvents:'none'}}>
+                  <input
+                  
+                    type="checkbox"
+                    onChange={() => toggleCheckbox(val.id)}
+                    checked={selectedItems.includes(val.id)}
+                    onClick={(e) => e.stopPropagation()} 
+                    style={{ pointerEvents: 'auto' }}
+                  />
+                </td>
+                <td>{val.id}</td>
+                <td>{val.name}</td>
+                <td>{val.description}</td>
+                <td>{val.gender}</td>
+                <td>{getCategoryName(val.categoryId)}</td>
+                <td>{getSubCategoryName(val.subCategoryId)}</td>
+                <td>{val.created_at}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+
   )
 }
 

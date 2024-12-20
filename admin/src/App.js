@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
+import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import AddCategory from './ProductManager/AddCategory';
 //import AddSubCategory from './ProductManager/AddSubCategory';
@@ -18,7 +19,9 @@ import AddCategory from './ProductManager/AddCategory';
 import AddSubCategory from './ProductManager/AddSubCategory';
 import Layout from './ProductManager/Layout';
 import AvailableAdmin from './Admin/AvailableAdmin';
-
+import ChangePassword from './Admin/ChangePassword';
+import PlacedOrders from './CustomerOrder/PlacedOrders';
+import PaymentDetail from './Payment/PaymentDetail';
 
 
 function App() {
@@ -31,7 +34,7 @@ function App() {
       
       <Routes>  
         
-        <Route path="/" element={<Layout><Head /></Layout>} />
+        <Route path="/" element={<Layout><PlacedOrders/></Layout>} />
         <Route path="/addcategory" element={<Layout><AddCategory /></Layout>} />
         <Route path="/addsubcategory" element={<Layout><AddSubCategory /></Layout>} />
         <Route path="/addsize" element={<Layout><AddSize /></Layout>} />
@@ -41,9 +44,9 @@ function App() {
         <Route path="/addadmin" element={<Layout><CreateAdmin /></Layout>} />
         <Route path="/productvariant" element={<Layout><ExpandProduct /></Layout>} />
         <Route path="/addnewvariant" element={<Layout><AddNewVariant /></Layout>} />
-      
-      
-        <Route path="/" element={<Layout><AvailableAdmin /></Layout>} />
+        <Route path="/changepassword" element={<Layout><ChangePassword /></Layout>} />
+        <Route path="/availableadmin" element={<Layout><AvailableAdmin /></Layout>} />
+        <Route path="/payment-details" element={<Layout><PaymentDetail /></Layout>} />
         
       </Routes>)
 :<Routes>

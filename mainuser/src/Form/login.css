@@ -1,0 +1,121 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 8px;
+padding-top: 20px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+.txt{
+    bottom: -40;
+}
+
+
+
+
+  
+ 
+
+
+  
+ 
+label {
+  font-weight: 370;
+}
+  
+
+
+/* Add this CSS in your Login.css file */
+.no-shadow {
+box-shadow: none !important;
+}
+/* Add this CSS in your Login.css file */
+.custom-input:focus {
+border-color: #000; /* Set your desired border color when input is in focus */
+
+/* You can customize this further if needed */
+}
+
+
+
+.input-container {
+/*For placeholder effect*/
+position: relative;
+margin: 20px;
+}
+
+.input-label {
+position: absolute;
+left: 10px;
+top: 10px;
+transition: all 0.3s ease-in-out;
+pointer-events: none;
+}
+
+.input-field {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.input-container.focused .input-label {
+top: -20px;
+font-size: 12px;
+font-weight: 500;
+}
+
+.label-up {
+top: -10px;
+font-size: 12px;
+}
+
+
+
+
+
+.input-container {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.input-label {
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 0;
+  transition: 0.2s ease all;
+}
+
+.label-up {
+  top: -20px;
+  font-size: 12px;
+}
+
+.input-field {
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  transition: border 0.2s ease;
+}
+
+.border-dark {
+  border: 1px solid #ccc;
+}
+
+.border-highlight {
+  border: 2px solid #2196F3;
+  border-radius: 4px;
+  transition: border 0.2s ease;
+}
+
+.eye{
+  position: absolute;
+  padding-top: 5px;
+  top: 1%;
+  right:19px;
+
+}

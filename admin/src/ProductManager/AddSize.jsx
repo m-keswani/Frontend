@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./Product.css";
-
+import MessageBox from './MessageBox';
+import Sizecss from './Sizecss.css'
+import { AiFillDelete } from 'react-icons/ai';
+import { GrAdd } from 'react-icons/gr';
 const AddSize = () => {
 
     const [size, setSize] = useState('')
@@ -8,6 +11,9 @@ const AddSize = () => {
     const [fetchedSize, setFetchedSize] = useState([])
     const [sizeError,setSizeError] = useState('')
     const [sizeDuplicate,setSizeDuplicate] = useState('')
+    const [showMessage,setShowMessage] = useState('')
+    const [showDeleteMessage,setShowDeleteMessage] = useState('')
+
     useEffect(() => {
         fetchsize()
     }, []);
@@ -31,11 +37,18 @@ const AddSize = () => {
             return; // Do not add the duplicate size
         }
             try {
-                await fetch("http://localhost:8000/adminsite/sizemaster",
+                const reponse = await fetch("http://localhost:8000/adminsite/sizemaster",
                     {
                         method: 'POST',
                         body: sizeForm,
                     })
+                    if(reponse.ok)
+                    {
+                        setShowMessage(true)
+                        setTimeout(() => {
+                            setShowMessage(false);
+                          }, 2000);
+                    }
                     fetchsize()
                     setSize('')        
             }
@@ -64,8 +77,13 @@ const AddSize = () => {
     const delSize =async(val)=>{
         try{
             
-            await fetch("http://localhost:8000/adminsite/sizemaster/"+val.toString(),{method:"DELETE"});
-            
+            const response = await fetch("http://localhost:8000/adminsite/sizemaster/"+val.toString(),{method:"DELETE"});
+            if(response.ok){
+                setShowDeleteMessage(true)
+                setTimeout(() => {
+                    setShowDeleteMessage(false);
+                  }, 2000);
+            }
           }
           catch(error){
             alert("Failed to delete")
@@ -77,24 +95,53 @@ const AddSize = () => {
     console.log("Fetched Dat", fetchedSize)
 
     return (
-        <div className='container">
-        '>
-            <div className='mean-con'>
-            <label>size Name :</label>
-            <input type="text" name='size' maxLength={10} value={size} onChange={(e) => setSize(e.target.value.replace(/[^A-Za-z0-9]/g, ''))} /><br />
-            <p className='text-danger 9px'>{sizeDuplicate && <div className="error-message">{sizeDuplicate}</div>}</p>
-            <p className='text-danger 9px'>{sizeError && <div className="error-message">{sizeError}</div>}</p>
+<div className=''>
+  {showMessage && <MessageBox message="Size Added Successfully" visibility='true' />}
+  {showDeleteMessage && <MessageBox message="Size Removed Successfully" visibility='true' />}
 
-            <button className='button' onClick={addsize}>Add size</button>
+  <div className='mean-con non-selectable container'>
+    <label>Size Name :</label>
+    <input
+      type="text"
+      name='size'
+      maxLength={10}
+      value={size}
+      onChange={(e) => setSize(e.target.value.replace(/[^A-Za-z0-9 .]/g, ''))}
+      className='input-field'
+    /><br />
+    <p className='text-danger small-text'>{sizeDuplicate && <div className="error-message">{sizeDuplicate}</div>}</p>
+    <p className='text-danger small-text'>{sizeError && <div className="error-message">{sizeError}</div>}</p>
+    {fetchedSize.some((dict) => Object.values(dict).includes(size.toLowerCase())) ? (<p className='text-info'>Size already added</p>) : null}
 
-            {fetchedSize.map((item) => (
-            <>
-                <p key={item.id}>{item.size}</p>
-                <button className='button' onClick={() => delSize(item.id)}>Remove</button>
-            </>
-            ))}
-            </div>
-        </div>
+    <button className='button ' onClick={addsize}><GrAdd/> Add Size</button>
+    <table>
+        <tr>
+            <th>
+                Size
+            </th>
+            <th></th>
+        </tr>
+        
+        {fetchedSize.map((item) => (
+                <tr>        
+                            <td className='h5 text-center'>
+                                {item.size}
+                            </td>
+                            <td>
+                                <button className='button float-right' onClick={() => delSize(item.id)}>Delete <AiFillDelete/></button>
+
+                            </td>
+                            </tr>
+        ))}
+   
+            
+   
+
+    </table>
+    
+  </div>
+</div>
+
     )
 }
 

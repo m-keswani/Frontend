@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./Product.css";
+import SubCategory from './SubCategory.css'
+import { AiFillDelete } from 'react-icons/ai';
+import { GrAdd } from 'react-icons/gr';
 
+import MessageBox from './MessageBox';
 const AddSubCategory = () => {
     const [category,setCategory] = useState('')
     const [subCategory,setSubCategory] = useState('')
@@ -12,6 +16,8 @@ const AddSubCategory = () => {
     const [categoryError,setCategoryError] = useState('')
     const [fetchedCategory,setFetchedCategory] = useState([])
     const [fetchedSubCategory,setFetchedSubCategory] = useState([])
+    const [showMessage, setShowMessage] = useState(false);
+    const [showDeleteMessage, setShowDeleteMessage] = useState(false);
 
     useEffect(() => {
         fetchCategory()
@@ -74,14 +80,25 @@ const AddSubCategory = () => {
         if(isValid)
         {
             try {
-                    await fetch('http://localhost:8000/adminsite/subcategorymaster/',
+                    const reponse = await fetch('http://localhost:8000/adminsite/subcategorymaster/',
                     {
                     method: 'POST',
                     body: formData,
                 })
+                if (reponse.ok)
+                {
+                    setShowMessage(true);
+                    setCategory('')
+                    setSubCategory('')
+                
+                }
+                
+                setTimeout(() => {
+                    setShowMessage(false);
+                }, 3000);
             }
             catch (error) {
-            console.log("Error ", error)
+            alert("Error to add !")
             }
 
             fetchSubCategory()
@@ -92,6 +109,10 @@ const AddSubCategory = () => {
         const response = await fetch("http://localhost:8000/adminsite/subcategorymaster/"+key.toString(),{method:"DELETE"});
         if(response.ok)
         {
+            setShowDeleteMessage(true);
+            setTimeout(() => {
+                setShowDeleteMessage(false);
+            }, 3000);
             fetchSubCategory()
         }
         console.log("response from del :",response)
@@ -99,7 +120,12 @@ const AddSubCategory = () => {
 
     return (
     <>
-    <div>
+    <div className='container'>
+    {showMessage && <MessageBox message="SubCategory Added Successfully" visibility='true' />}
+    {showDeleteMessage && <MessageBox message="SubCategory Removed Successfully" visibility='true' />}
+    
+    
+
     <select name='category' value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="" disabled>Select Category</option>
         {fetchedCategory.map((val)=>(
@@ -112,16 +138,18 @@ const AddSubCategory = () => {
 
       <input type="text" name='subCategory' maxLength="20" value={subCategory} onChange={(e) => setSubCategory(e.target.value.replace(/[^A-Za-z' ']/g, ''))}/>
       <p className='text-danger 9px'>{subCategoryError && <div className="error-message">{subCategoryError}</div>}</p>
-
-      <button onClick={addSubCategory}>Add SubCategory</button>
+        {fetchedSubCategory.some((dict) => Object.values(dict).includes(subCategory.toLowerCase()))?(<p >already added</p>):null}
+        
+      <button className='button' onClick={addSubCategory}><GrAdd/> Add SubCategory</button>
     </div>
-    <div>
+    <br/>
+    <div className='container'>
         <table>
-            <tr>
-                <th>
+            <tr >
+                <th className='text-center'>
                     Category
                 </th>
-                <th>
+                <th className='text-center'>
                     SubCategory
                 </th>
                 <th>
@@ -131,17 +159,19 @@ const AddSubCategory = () => {
 
             
                 {fetchedSubCategory.map((val)=>(
-                    <tr>
-                        <td>
-                            {val.subCategoryName}
-                        </td>
-                        <td>
+                    <tr className='non-selectable h5'>
+                        <td className=' text-center pt-5'>
                             {fetchedCategory.map((item)=>(
                                <p> {val.categoryId === item.id ? item.categoryName:''}</p>
                             ))}
                         </td>
-                        <td>
-                            <button onClick={() => delCat(val.id)}>Remove</button>
+                        <td className='text-center'>
+                            {val.subCategoryName}
+                        </td>
+                        
+                        <td >
+                            <button className='button float-right' onClick={() => delCat(val.id)}>Delete <AiFillDelete /></button>
+
                         </td>
                     </tr>
                 ))}

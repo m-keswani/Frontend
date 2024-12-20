@@ -1,0 +1,23 @@
+/* CSS in a separate file or in a <style> block */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Optional: Adjust the alignment as needed */
+  }
+  
+  .card {
+    margin-bottom: 20px; /* Add space between cards */
+    /* Add other styling for cards */
+  }
+  .container {
+    max-height: 100%; /* Set a maximum height */
+    overflow-y: auto; /* Add vertical scroll if needed */
+  }
+  
+  @media (max-width: 767px) {
+    .container {
+      max-height: none; /* Remove maximum height for smaller screens */
+      overflow-y: visible; /* Disable vertical scroll for smaller screens */
+    }
+  }
+  

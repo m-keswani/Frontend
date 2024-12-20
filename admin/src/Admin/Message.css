@@ -1,0 +1,15 @@
+.message-box {
+    background-color: #3c4442; /* Green background color for success */
+    color: #fff; /* White text color */
+    padding: 10px;
+    font-weight: 450;
+    border-radius: 4px;
+    margin: 0 auto; /* Center horizontally */
+    max-width: 400px;
+    text-align: center;
+    position: fixed;
+    top: 2px; /* Position at the top of the page */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 999; /* Adjust z-index to make sure it's above other elements */
+  }

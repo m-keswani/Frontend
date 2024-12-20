@@ -1,0 +1,29 @@
+.text1{
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+  /* Apply Anton font to the entire page */
+  body {
+    font-family: 'Anton', sans-serif;
+  }
+
+  /* Apply Anton font to the h2 element with the 'text-center' class */
+  .text-center {
+    font-family: 'Anton', sans-serif;
+  }
+
+  /* Additional CSS for your specific element */
+  .in1 h2 a {
+    /* Specify the padding properties and other styles as needed */
+    padding-left: 130px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    font-family: 'Anton', sans-serif;
+  }
+  .category-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
