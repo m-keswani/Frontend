@@ -25,7 +25,7 @@ const AllProduct = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:8000/adminsite/productdetails');
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/productdetails');
             const responseData = await response.json();
             setFetchedProduct(responseData);
         } catch (error) {
@@ -35,7 +35,7 @@ const AllProduct = () => {
 
     const fetchVariants = async () => {
         try {
-            const response = await fetch('http://localhost:8000/getproductvariant/');
+            const response = await fetch('https://mohitto25.pythonanywhere.com/getproductvariant/');
             const responseData = await response.json();
             setFetchedVariant(responseData);
         } catch (error) {
@@ -45,7 +45,7 @@ const AllProduct = () => {
 
     const fetchImages = async () => {
         try {
-            const response = await fetch('http://localhost:8000/getimages/');
+            const response = await fetch('https://mohitto25.pythonanywhere.com/getimages/');
             const responseData = await response.json();
             setFetchedImages(responseData);
         } catch (error) {
@@ -77,7 +77,7 @@ const AllProduct = () => {
     }, []);
 
     const getAllCategory = async () => {
-        const response = await fetch('http://localhost:8000/api/getallcategory')
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/getallcategory')
         if (response.ok) {
             const responseData = await response.json()
             console.log(responseData)
@@ -133,7 +133,7 @@ const AllProduct = () => {
                                                     <div className="col-md-">
                                                         <div className="part-1">
                                                             <img
-                                                                src={image ? 'http://localhost:8000' + image.imageUrl : 'default-image-url.jpg'}
+                                                                src={image ? 'https://mohitto25.pythonanywhere.com' + image.imageUrl : 'default-image-url.jpg'}
                                                                 alt={item.name}
                                                                 className="img-fluid"
                                                             />
