@@ -24,7 +24,7 @@ function Order() {
   const getAddress = async () => {
     const data = new FormData()
     data.append('address_id', addressId)
-    const response = await fetch('http://localhost:8000/api/getaddress', { method: "POST", body: data })
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/getaddress', { method: "POST", body: data })
     if (response.ok) {
       const responseData = await response.json()
       //console.log(' current adddress :',responseData)
@@ -40,7 +40,7 @@ function Order() {
   const checkAuth = async () => {
     const data = new FormData();
     data.append('token', localStorage.getItem('authToken'));
-    const response = await fetch('http://localhost:8000/api/verifyuser', { method: "POST", body: data });
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser', { method: "POST", body: data });
     const responseData = await response.json();
     if (responseData.authuser === 'false') {
       setAuthUser(false);
@@ -56,7 +56,7 @@ function Order() {
     data.append('email', email)
     //alert()
     //fetching cart
-    const response = await fetch('http://localhost:8000/api/cartitem', { method: "POST", body: data })
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/cartitem', { method: "POST", body: data })
     if (response.ok) {
       const responseData = await response.json()
       console.log('cart data :', responseData)
@@ -129,7 +129,7 @@ function Order() {
         const variantId = val.variant_id;
         const data = new FormData();
         data.append('variant_id', variantId);
-        const variantresponse = await fetch('http://localhost:8000/api/variantdata', {
+        const variantresponse = await fetch('https://mohitto25.pythonanywhere.com/api/variantdata', {
           method: 'POST',
           body: data,
         });
@@ -153,7 +153,7 @@ function Order() {
         const data = new FormData();
         data.append('product_id', productId);
 
-        const productresponse = await fetch('http://localhost:8000/api/productdata', {
+        const productresponse = await fetch('https://mohitto25.pythonanywhere.com/api/productdata', {
           method: 'POST',
           body: data,
         });
@@ -176,7 +176,7 @@ function Order() {
         const data = new FormData();
         data.append('color_id', colorId);
 
-        const response = await fetch('http://localhost:8000/api/color', {
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/color', {
           method: 'POST',
           body: data,
         });
@@ -207,7 +207,7 @@ function Order() {
         const data = new FormData();
         data.append('size_id', sizeId);
         console.log('size', sizeId)
-        const response = await fetch('http://localhost:8000/api/size', {
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/size', {
           method: 'POST',
           body: data,
         });
@@ -236,7 +236,7 @@ function Order() {
     data.append('address_id', addressId)
     data.append('totalPrice', grandTotal)
 
-    const response = await fetch('http://localhost:8000/api/order', { method: "POST", body: data })
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/order', { method: "POST", body: data })
     if (response.ok) {
       const responseData = await response.json()
       const orderId = await responseData.id;
@@ -248,14 +248,14 @@ function Order() {
         orderItem.append('orderId', orderId)
         orderItem.append('variantId', item.variant_id)
         orderItem.append('qty', item.qty)
-        const response = await fetch('http://localhost:8000/api/orderitem', { method: "POST", body: orderItem })
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/orderitem', { method: "POST", body: orderItem })
         if (response.ok) {
           //alert('order placed Successfully continue Shopping...')
 
           // To clear user cart
           const currentUserEmail = new FormData()
           currentUserEmail.append('email', email)
-          const response = await fetch('http://localhost:8000/api/clearcart', { method: "POST", body: currentUserEmail })
+          const response = await fetch('https://mohitto25.pythonanywhere.com/api/clearcart', { method: "POST", body: currentUserEmail })
           if (response.ok) {
             navigate('/')
           }
