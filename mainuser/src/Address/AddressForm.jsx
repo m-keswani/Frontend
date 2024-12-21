@@ -40,7 +40,7 @@ const AddressForm = () => {
         const data = new FormData()
 
         data.append('token', localStorage.getItem('authToken'))
-        const response = await fetch('http://localhost:8000/api/verifyuser', { method: "POST", body: data })
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser', { method: "POST", body: data })
         const responseData = await response.json()
         if (responseData.authuser === 'false') {
 
@@ -250,7 +250,7 @@ const AddressForm = () => {
             userAddress.append('state',formValues.state)
 
 
-            const response = await fetch('http://localhost:8000/api/adduseraddress',{method:"POST",body:userAddress})
+            const response = await fetch('https://mohitto25.pythonanywhere.com/api/adduseraddress',{method:"POST",body:userAddress})
             if(response.ok){
                 setFormValues(initialValues)
                 navigate('/addresselection')
