@@ -37,7 +37,7 @@ const User = () => {
     console.log("Form Data",email)
     try {
       console.log("headers ::", ' ')
-      const response = await fetch('http://localhost:8000/api/adduser/', {
+      const response = await fetch('https://mohitto25.pythonanywhere.com/api/adduser/', {
         method: 'POST',
         headers: {
           //'Content-Type': 'application/json',
