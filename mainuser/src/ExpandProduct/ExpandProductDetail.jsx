@@ -41,7 +41,7 @@ const ExpandProductDetail = () => {
   const fetchProductDetails =async()=>{
     const data = new FormData()
     data.append('product_id',product_id)
-    const response = await fetch('http://localhost:8000/api/productdata',{method:"POST",body:data})
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/productdata',{method:"POST",body:data})
     if(response.ok){
       const responseData = await response.json()
       setCurrentProductData(responseData)
@@ -52,7 +52,7 @@ const ExpandProductDetail = () => {
 
   const fetchVariants = async () => {
     try {
-      const response = await fetch('http://localhost:8000/adminsite/getproductvariant/' + product_id.toString())
+      const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/getproductvariant/' + product_id.toString())
       const responseData = await response.json()
       //console.log("Response Data in fetchvariants :", responseData)
       setSizeId(responseData[0]?.sizeId)
@@ -93,7 +93,7 @@ const ExpandProductDetail = () => {
 
     for (const val of variantData) {
       try {
-        const response = await fetch(`http://localhost:8000/adimsite/productImages/${val.id}`);
+        const response = await fetch(`https://mohitto25.pythonanywhere.com/adimsite/productImages/${val.id}`);
         const responseData = await response.json();
 
         newArray.push(responseData);
@@ -115,7 +115,7 @@ const ExpandProductDetail = () => {
       await Promise.all(
         variantData.map(async (val) => {
           try {
-            const response = await fetch('http://localhost:8000/adminsite/getcolor/' + val.colorId);
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/getcolor/' + val.colorId);
             const responseData = await response.json();
 
             // Store the unique color ID and color in the object
@@ -147,7 +147,7 @@ const ExpandProductDetail = () => {
       await Promise.all(
         variantData.map(async (val) => {
           try {
-            const response = await fetch('http://localhost:8000/adminsite/getsize/' + val.sizeId);
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/getsize/' + val.sizeId);
             const responseData = await response.json();
 
             uniqueSizes[responseData[0]?.id] = responseData[0]?.size;
@@ -255,7 +255,7 @@ const ExpandProductDetail = () => {
         }
         else{
           data.append('token',localStorage.getItem('authToken'))
-          const response = await fetch('http://localhost:8000/api/verifyuser',{method:"POST",body:data})
+          const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser',{method:"POST",body:data})
           const responseData = await response.json()
           if(responseData.authuser === 'false'){
             alert('you are not authorised ! ')
@@ -273,7 +273,7 @@ const ExpandProductDetail = () => {
             console.log('cart variant_id :', variant[0]?.id)
             console.log('cart qty :',quantity)
             
-            const response = await fetch('http://localhost:8000/api/addtocart',{method:"POST",body:cartData})
+            const response = await fetch('https://mohitto25.pythonanywhere.com/api/addtocart',{method:"POST",body:cartData})
             if(response.ok){
               alert('added to cart')
             }
@@ -373,7 +373,7 @@ const ExpandProductDetail = () => {
                   <div className=''></div>
                   <div className=" position-relative tab-pane active" id="pic-1">
                     
-                    <img src={'http://localhost:8000/'+imageArray[currentImageIndex]?.imageUrl} alt="Product" />
+                    <img src={'https://mohitto25.pythonanywhere.com/'+imageArray[currentImageIndex]?.imageUrl} alt="Product" />
                     <div className="position-absolute bottom-0 end-0 p-4">
                       <FaChevronLeft
                         size={25}
@@ -413,7 +413,7 @@ const ExpandProductDetail = () => {
                           data-toggle="tab"
                         >
 
-                          <img src={'http://localhost:8000'+val[0]?.imageUrl} alt={`Thumbnail ${key + 1}`} 
+                          <img src={'https://mohitto25.pythonanywhere.com'+val[0]?.imageUrl} alt={`Thumbnail ${key + 1}`} 
                          
                           onClick={() => handleImageChange(val)}
                           
