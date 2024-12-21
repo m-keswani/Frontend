@@ -48,7 +48,7 @@ function NewPassword() {
     data.append('token', token)
     data.append('email', email)
     try {
-      const response = await fetch('http://localhost:8000/api/checktokens', { method: 'POST', body: data })
+      const response = await fetch('https://mohitto25.pythonanywhere.com/api/checktokens', { method: 'POST', body: data })
       if (response.ok) {
         const responseData = await response.json()
         setIsToken(responseData.message)
@@ -140,7 +140,7 @@ function NewPassword() {
 
     data.append('password',formValues.password)
     try{
-      const response = await fetch('http://localhost:8000/api/setpassword',{method:'POST',body:data})
+      const response = await fetch('https://mohitto25.pythonanywhere.com/api/setpassword',{method:'POST',body:data})
       if(response.ok){
         alert('password changed successfully !')
         navigate('/signin')
