@@ -58,7 +58,7 @@ const PaymentSuccess = () => {
         const data = new FormData()
         data.append('email', email)
 
-        const response = await fetch('http://localhost:8000/api/cartitem', { method: "POST", body: data })
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/cartitem', { method: "POST", body: data })
         if (response.ok) {
           const responseData = await response.json()
           console.log('cart data :', responseData)
@@ -78,7 +78,7 @@ const PaymentSuccess = () => {
         data.append('totalPrice', grandTotal)
         data.append('paymentMethod',payMode)
         
-        const response = await fetch('http://localhost:8000/api/order', { method: "POST", body: data })
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/order', { method: "POST", body: data })
         if (response.ok) {
           const responseData = await response.json()
           const orderId = await responseData.id;
@@ -90,14 +90,14 @@ const PaymentSuccess = () => {
             orderItem.append('orderId', orderId)
             orderItem.append('variantId', item.variant_id)
             orderItem.append('qty', item.qty)
-            const response = await fetch('http://localhost:8000/api/orderitem', { method: "POST", body: orderItem })
+            const response = await fetch('https://mohitto25.pythonanywhere.com/api/orderitem', { method: "POST", body: orderItem })
             if (response.ok) {
               //alert('order placed Successfully continue Shopping...')
     
               // To clear user cart
               const currentUserEmail = new FormData()
               currentUserEmail.append('email', email)
-              const response = await fetch('http://localhost:8000/api/clearcart', { method: "POST", body: currentUserEmail })
+              const response = await fetch('https://mohitto25.pythonanywhere.com/api/clearcart', { method: "POST", body: currentUserEmail })
               if (response.ok) {
                 if (payMode !== "COD") {
                   const data = new FormData()
@@ -109,7 +109,7 @@ const PaymentSuccess = () => {
                   data.append('paymentAmount', grandTotal)
 
 
-                  const payment_response = await fetch('http://localhost:8000/payment-detail', { method: "POST", body: data })
+                  const payment_response = await fetch('https://mohitto25.pythonanywhere.com/payment-detail', { method: "POST", body: data })
                   if (payment_response.ok) {
                     navigate(`/order-placed?payMode=${payMode}`)
                   }
