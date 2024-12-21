@@ -38,7 +38,7 @@ const MainHead = ({ cartSize }) => {
   const getCartQty =async(email)=>{
     const data = new FormData()
     data.append('email',email)
-    const response = await fetch('http://localhost:8000/api/cartlength',{
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/cartlength',{
       method:"POST",
       body:data
     })
@@ -54,7 +54,7 @@ const MainHead = ({ cartSize }) => {
     const data = new FormData();
 
     data.append('token', localStorage.getItem('authToken'));
-    const response = await fetch('http://localhost:8000/api/verifyuser', { method: "POST", body: data });
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser', { method: "POST", body: data });
     const responseData = await response.json();
     if (responseData.authuser === 'false') {
       setAuthUser(false);
