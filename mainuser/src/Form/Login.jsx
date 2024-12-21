@@ -97,7 +97,7 @@ function Login() {
       formData.append('email',formValues.email.toLowerCase())
       formData.append('password',formValues.password)
 
-      const response = await fetch('http://localhost:8000/api/usersignin/',{method:"POST",body:formData})
+      const response = await fetch('https://mohitto25.pythonanywhere.com/api/usersignin/',{method:"POST",body:formData})
       const responseData = await response.json()
       console.log(responseData)
       if(!responseData.user){
@@ -114,7 +114,7 @@ function Login() {
         const data = new FormData()
         data.append('email',formValues.email.toLowerCase())
         try{
-          const response = await fetch('http://localhost:8000/api/authuser',{method:"POST",body:data})
+          const response = await fetch('https://mohitto25.pythonanywhere.com/api/authuser',{method:"POST",body:data})
           if(response.ok){
             const token = await response.json()
             localStorage.setItem('authToken',token.authToken)
