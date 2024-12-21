@@ -60,7 +60,7 @@ const PaymentComponent = () => {
                     data.append('price',grandTotal)
                     data.append('email',decryptedEmail)
 
-                    const response = await axios.post('http://localhost:8000/process-payment',data);
+                    const response = await axios.post('https://mohitto25.pythonanywhere.com/process-payment',data);
                     console.log(response)
                     alert('Redirecting to payment page...')
                     window.location.href = response.data.approval_url;
