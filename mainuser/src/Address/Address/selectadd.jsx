@@ -49,7 +49,7 @@ function AddressSelectionPage() {
   const checkAuth = async () => {
     const data = new FormData();
     data.append('token', localStorage.getItem('authToken'));
-    const response = await fetch('http://localhost:8000/api/verifyuser', { method: "POST", body: data });
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser', { method: "POST", body: data });
     const responseData = await response.json();
     if (responseData.authuser === 'false') {
       setAuthUser(false);
@@ -66,7 +66,7 @@ function AddressSelectionPage() {
   const fetchUserAddress =async()=>{
     const data = new FormData()
     data.append('email',email)
-    const response = await fetch('http://localhost:8000/api/useraddresses',{method:"POST",body:data})
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/useraddresses',{method:"POST",body:data})
     if(response.ok){
       const responseData = await response.json()
       setUserAddress(responseData)
