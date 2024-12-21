@@ -42,7 +42,7 @@ function ShoppingCart() {
     const data = new FormData()
 
     data.append('token', localStorage.getItem('authToken'))
-    const response = await fetch('http://localhost:8000/api/verifyuser', { method: "POST", body: data })
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser', { method: "POST", body: data })
     const responseData = await response.json()
     if (responseData.authuser === 'false') {
 
