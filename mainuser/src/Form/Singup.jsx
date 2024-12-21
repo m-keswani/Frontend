@@ -215,7 +215,7 @@ function Signup() {
       
       formData.append('password',formValues.password)
 
-      const response = await fetch('http://localhost:8000/api/newuserconfirmation/', { method: 'POST', body: formData })
+      const response = await fetch('https://mohitto25.pythonanywhere.com/api/newuserconfirmation/', { method: 'POST', body: formData })
       if(response.ok){
         
         const responseData = await response.json()
