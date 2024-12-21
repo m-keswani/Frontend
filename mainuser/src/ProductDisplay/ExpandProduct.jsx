@@ -21,7 +21,7 @@ const ExpandProduct = () => {
 
   const fetchVariants = async () => {
     try {
-      const response = await fetch('http://localhost:8000/adminsite/getproductvariant/' + product_id.toString())
+      const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/getproductvariant/' + product_id.toString())
       const responseData = await response.json()
       console.log("Response Data in fetchvariants :", responseData)
       setFetchedVariant(responseData)
@@ -41,7 +41,7 @@ const ExpandProduct = () => {
 
     for (const val of variantData) {
       try {
-        const response = await fetch(`http://localhost:8000/adimsite/productImages/${val.id}`);
+        const response = await fetch(`https://mohitto25.pythonanywhere.com/adimsite/productImages/${val.id}`);
         const responseData = await response.json();
 
         newArray.push(responseData);
@@ -63,7 +63,7 @@ const ExpandProduct = () => {
       await Promise.all(
         variantData.map(async (val) => {
           try {
-            const response = await fetch('http://localhost:8000/adminsite/getcolor/' + val.colorId);
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/getcolor/' + val.colorId);
             const responseData = await response.json();
   
             // Store the unique color ID and color in the object
@@ -95,7 +95,7 @@ const ExpandProduct = () => {
       await Promise.all(
         variantData.map(async (val) => {
           try {
-            const response = await fetch('http://localhost:8000/adminsite/getsize/' + val.sizeId);
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/getsize/' + val.sizeId);
             const responseData = await response.json();
   
             uniqueSizes[responseData[0]?.id] = responseData[0]?.size;
@@ -151,7 +151,7 @@ const ExpandProduct = () => {
               {val.map((item) => (
                 <div key={item.id}>
                   <img
-                    src={'http://localhost:8000' + item.imageUrl}
+                    src={'https://mohitto25.pythonanywhere.com' + item.imageUrl}
                     style={{ maxWidth: '200px', height: '200px' }}
                     alt={`Image ${item.id}`}
                   />
