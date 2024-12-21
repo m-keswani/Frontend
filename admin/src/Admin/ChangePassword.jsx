@@ -27,7 +27,7 @@ const ChangePassword = () => {
         let data = new FormData()
         data.append('username',localStorage.getItem('user'))
         try{
-            const response = await fetch('http://localhost:8000/getadminpassword/',{method:"POST",body:data})
+            const response = await fetch('https://mohitto25.pythonanywhere.com/getadminpassword/',{method:"POST",body:data})
             if(response.ok){
                 const responseData = await response.json()
                 setOriginalPassword(responseData.password)
@@ -52,7 +52,7 @@ const ChangePassword = () => {
         data.append('uname',localStorage.getItem('user'))
         data.append('password',newConfirmPassword)
         try{
-            const response = await fetch('http://localhost:8000/adminpassword/',{method:"PUT",body:data})
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminpassword/',{method:"PUT",body:data})
             if(response.ok){
                 
                 setMessage("🔐 password changed successfully")
