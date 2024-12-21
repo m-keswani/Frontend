@@ -16,7 +16,7 @@ const ProductGallery = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:8000/adminsite/productdetails');
+            const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/productdetails');
             const responseData = await response.json();
             setFetchedProduct(responseData);
         } catch (error) {
@@ -26,7 +26,7 @@ const ProductGallery = () => {
 
     const fetchVariants = async () => {
         try {
-            const response = await fetch('http://localhost:8000/getproductvariant/');
+            const response = await fetch('https://mohitto25.pythonanywhere.com/getproductvariant/');
             const responseData = await response.json();
             setFetchedVariant(responseData);
         } catch (error) {
@@ -36,7 +36,7 @@ const ProductGallery = () => {
 
     const fetchImages = async () => {
         try {
-            const response = await fetch('http://localhost:8000/getimages/');
+            const response = await fetch('https://mohitto25.pythonanywhere.com/getimages/');
             const responseData = await response.json();
             setFetchedImages(responseData);
         } catch (error) {
@@ -87,7 +87,7 @@ const ProductGallery = () => {
         if (variant) {
             const image = fetchedImages.find((img) => img.variantId === variant.id);
             if (image) {
-                return 'http://localhost:8000' + image.imageUrl;
+                return 'https://mohitto25.pythonanywhere.com' + image.imageUrl;
             }
         }
         // Return a default image URL or handle the case when no image is found for the product
