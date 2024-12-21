@@ -56,7 +56,7 @@ function Rating() {
   const checkAuth = async () => {
     const data = new FormData()
     data.append('token', localStorage.getItem('authToken'))
-    const response = await fetch('http://localhost:8000/api/verifyuser', { method: "POST", body: data })
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/verifyuser', { method: "POST", body: data })
     const responseData = await response.json()
     if (responseData.authuser === 'false') {
       setAuthUser(false)
@@ -107,7 +107,7 @@ function Rating() {
     reviewData.append('rate',userReview.stars)
 
 
-    const reviewResponse = await fetch('http://localhost:8000/api/addreview',{method:"POST",body:reviewData})
+    const reviewResponse = await fetch('https://mohitto25.pythonanywhere.com/api/addreview',{method:"POST",body:reviewData})
     if(reviewResponse.ok){
       const review = await reviewResponse.json()
       const id = await review.reviewId
@@ -116,7 +116,7 @@ function Rating() {
           const reviewImages = new FormData()
           reviewImages.append('reviewId', id)
           reviewImages.append('imageUrl', val)
-          const responseimage = await fetch('http://localhost:8000/api/addreviewimage', { method: "POST", body: reviewImages })
+          const responseimage = await fetch('https://mohitto25.pythonanywhere.com/api/addreviewimage', { method: "POST", body: reviewImages })
           if (responseimage.ok) {
             alert("review Added !")
 
@@ -148,7 +148,7 @@ function Rating() {
   const getReview =async()=>{
     const data = new FormData()
     data.append('product_id',productId)
-    const reviewData = await fetch('http://localhost:8000/api/getreviews',{method:"POST",body:data})
+    const reviewData = await fetch('https://mohitto25.pythonanywhere.com/api/getreviews',{method:"POST",body:data})
     if(reviewData.ok){
       const reviews = await reviewData.json()
       setReview(reviews)
@@ -178,7 +178,7 @@ function Rating() {
       const getUserName = async () => {
         const data = new FormData();
         data.append('email', email);
-        const response = await fetch('http://localhost:8000/api/username', {
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/username', {
           method: 'POST',
           body: data,
         });
@@ -206,7 +206,7 @@ function Rating() {
       const getUserName = async () => {
         const data = new FormData();
         data.append('review_id', review_id);
-        const response = await fetch('http://localhost:8000/api/reviewimages', {
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/reviewimages', {
           method: 'POST',
           body: data,
         });
@@ -229,13 +229,13 @@ function Rating() {
       <span>{reviewImages.map((val)=>(
         <img
           key={val.id}
-          src={'http://localhost:8000'+val.imageUrl}
+          src={'https://mohitto25.pythonanywhere.com'+val.imageUrl}
           style={{ maxWidth: '10%' }}
         />
         
       ))}</span>
         {reviewImages.length > 0 ?
-          <ReviewImageGallery images={reviewImages.map((val) => ('http://localhost:8000'+val.imageUrl))} />
+          <ReviewImageGallery images={reviewImages.map((val) => ('https://mohitto25.pythonanywhere.com'+val.imageUrl))} />
           : null
 
         }
