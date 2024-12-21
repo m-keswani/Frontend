@@ -70,7 +70,7 @@ function ForgotPassword() {
       try {
         const data = new FormData()
         data.append('email', formValues.email)
-        const response = await fetch('http://localhost:8000/api/forgotpassword/', { method: "POST", body: data })
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/forgotpassword/', { method: "POST", body: data })
         if(response.ok)
         {
           const responseData = await response.json()
@@ -85,7 +85,7 @@ function ForgotPassword() {
             const newData = new FormData()
             newData.append('email',formValues.email.toLowerCase())
 
-            const response = await fetch('http://localhost:8000/api/resetpassword/',{method:'POST',body:newData})
+            const response = await fetch('https://mohitto25.pythonanywhere.com/api/resetpassword/',{method:'POST',body:newData})
             console.log('new Response',response)
           }
           if(! responseData.user) {
