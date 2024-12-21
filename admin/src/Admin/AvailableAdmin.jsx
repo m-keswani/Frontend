@@ -15,7 +15,7 @@ const AvailableAdmin = () => {
     }, []);
 
     const fetchAdmins =async()=>{
-        const response = await fetch('http://localhost:8000/adminsite/addadmin')
+        const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/addadmin')
         const responseData = await response.json()
         setAdmin(responseData)
     }
@@ -26,7 +26,7 @@ const AvailableAdmin = () => {
 
                 setMessage('Removing...')
 
-                const response = await fetch('http://localhost:8000/adminsite/removeadmin/' + key.toString() + '/', { method: "DELETE" });
+                const response = await fetch('https://mohitto25.pythonanywhere.com/adminsite/removeadmin/' + key.toString() + '/', { method: "DELETE" });
 
                 console.log("Response From response",response)
                 if(response.ok){
