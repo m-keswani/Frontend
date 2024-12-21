@@ -54,7 +54,7 @@ function ShoppingCart() {
       setAuthUser(true)
       const email = new FormData()
       email.append('email', responseData.userEmail)
-      const fetchData = await fetch('http://localhost:8000/api/cartitem', { method: "POST", body: email })
+      const fetchData = await fetch('https://mohitto25.pythonanywhere.com/api/cartitem', { method: "POST", body: email })
       if (fetchData.ok) {
         const data = await fetchData.json()
         setEmail(responseData.userEmail)
@@ -104,7 +104,7 @@ function ShoppingCart() {
   const removeItem = async (id) => {
     const data = new FormData();
     data.append('variant_id', id);
-    const delItem = await fetch('http://localhost:8000/api/removecartitem', { method: 'POST', body: data });
+    const delItem = await fetch('https://mohitto25.pythonanywhere.com/api/removecartitem', { method: 'POST', body: data });
     if (delItem.ok) {
 
       setVariantData((prevItems) => prevItems.filter((item) => item[0].id !== id));
@@ -119,7 +119,7 @@ function ShoppingCart() {
       const promises = userCart.map(async (val) => {
         const cartForm = new FormData();
         cartForm.append('variant_id', val.variant_id);
-        const data = await fetch('http://localhost:8000/api/variantdata', {
+        const data = await fetch('https://mohitto25.pythonanywhere.com/api/variantdata', {
           method: 'POST',
           body: cartForm,
         });
@@ -156,7 +156,7 @@ function ShoppingCart() {
       variantData.map(async (val) => {
         data.append('product_id', val[0]?.productId)
         console.log('product Data :', val[0]?.productId)
-        const product = await fetch('http://localhost:8000/api/productdata', { method: "POST", body: data })
+        const product = await fetch('https://mohitto25.pythonanywhere.com/api/productdata', { method: "POST", body: data })
         if (product.ok) {
           const productData = await product.json()
           const productName = await productData[0]?.name;
@@ -186,7 +186,7 @@ function ShoppingCart() {
         data.append('variant_id', val[0]?.id)
         //console.log('product Data :', val[0]?.productId)
 
-        const product = await fetch('http://localhost:8000/api/cartimage', { method: "POST", body: data })
+        const product = await fetch('https://mohitto25.pythonanywhere.com/api/cartimage', { method: "POST", body: data })
         if (product.ok) {
           const productData = await product.json()
           const image_url = await productData.imageUrl;
@@ -214,7 +214,7 @@ function ShoppingCart() {
         const data = new FormData();
         data.append('size_id', val[0]?.sizeId);
 
-        const response = await fetch('http://localhost:8000/api/size', { method: "POST", body: data });
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/size', { method: "POST", body: data });
 
         if (response.ok) {
           const sizeData = await response.json();
@@ -245,7 +245,7 @@ function ShoppingCart() {
         const data = new FormData();
         data.append('color_id', val[0]?.colorId);
 
-        const response = await fetch('http://localhost:8000/api/color', { method: "POST", body: data });
+        const response = await fetch('https://mohitto25.pythonanywhere.com/api/color', { method: "POST", body: data });
 
         if (response.ok) {
           const colorData = await response.json();
@@ -271,7 +271,7 @@ function ShoppingCart() {
   const navigateToProduct = async (id) => {
     const data = new FormData()
     data.append('variant_id', id)
-    const response = await fetch('http://localhost:8000/api/productid', { method: "POST", body: data })
+    const response = await fetch('https://mohitto25.pythonanywhere.com/api/productid', { method: "POST", body: data })
     if (response.ok) {
       const responseData = await response.json()
       navigate(`/expandproductdetail?productName=${'productName'}&id=${responseData.product_id}`);
@@ -334,7 +334,7 @@ useEffect(() => {
       data.append('qty', selectedQty[itemId]); // Use the quantity for the specific item
       data.append('item_id', itemId);
   
-      const response = await fetch('http://localhost:8000/api/changeqty', {
+      const response = await fetch('https://mohitto25.pythonanywhere.com/api/changeqty', {
         method: 'POST',
         body: data,
       });
@@ -372,7 +372,7 @@ useEffect(() => {
                                     <img
 
                                       onClick={() => navigateToProduct(item[0]?.id)}
-                                      src={"http://localhost:8000" + val.imageUrl}
+                                      src={"https://mohitto25.pythonanywhere.com" + val.imageUrl}
                                       className="img-fluid rounded-3"
                                       alt={item.name}
 
